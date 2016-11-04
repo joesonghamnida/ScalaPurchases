@@ -21,13 +21,15 @@ object FileIO {
   }
 
   def findCategory(s: String) = {
+    var writeToFile = new PrintWriter(new File(s"${s}_filtered_purchases.txt"))
     purchases.filter(_._5 == s).map(x => {
-      println(s"Customer: ${x._1}, Date: ${x._2.substring(0, 10)}")
-      val writeToFile = new PrintWriter(new File(s"${s}_filtered_purchases.prn"))
-      writeToFile.write(s + "\n")
-      writeToFile.close()
-    })
-    ""
+      var purchase = s"Customer: ${x._1}, Date: ${x._2.substring(0, 10)}"
+      println(purchase)
+      writeToFile.write(purchase + "\n")
+    }
+
+    )
+    writeToFile.close()
   }
 
   val purchases = mutable.MutableList[(String, String, String, String, String)]()
