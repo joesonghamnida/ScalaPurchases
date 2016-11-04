@@ -16,7 +16,7 @@ object FileIO {
 
   def choice = {
     val seq = Seq("Alcohol", "Furniture", "Shoes", "Toiletries", "Food", "Jewelry").mkString("\n")
-    prompt(s"\nPlease enter a category:\nAlcohol \nFurniture \nToiletries \nShoes \nFood \n Jewelry \n${seq}")
+    prompt(s"\nPlease enter a category:\n ${seq}")
 
   }
 
@@ -34,7 +34,7 @@ object FileIO {
 
   def main(args: Array[String]): Unit = {
 
-    Source.fromFile("purchases.txt").getLines().drop(1).foreach(line => {
+    Source.fromFile("purchases.csv").getLines().drop(1).foreach(line => {
       val purchase = {
         val Array(customerId, date, creditCard, cvv, category) = line.split(",").map(_.trim)
         (customerId, date, creditCard, cvv, category)
